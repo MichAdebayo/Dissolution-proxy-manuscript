@@ -129,118 +129,116 @@ MD962066 +
 ## close plot save graphics
 dev.off()
 
-#**************************
-#Correlation Plot-----------
-#**************************
+##*********************************************************************************
+## Figure 3a (Joy plot for Mozambique Channel::planktonic foraminifera) -----------
+##*********************************************************************************
 
-ggscatter(Depth_transect, x = "Fragvariance", y = "Foramvariance", shape = 16,
-          add = "reg.line", size = 2, 
-          cor.coef = TRUE, cor.method = "spearman", add.params = list(color = "black", fill = "lightgray",size = 0.5), 
-          xlab = "Frag variance", ylab = "Foram variance")
-
-
-fit.rob1 <- lmrob(Depth_transect_2$Sp_richness ~  Depth_transect_2$`FVIndex 2` + fvsquared, data = Depth_transect_2)
-summary(fit.rob1)
-
-
-fit.rob1 <- lm(Depth_transect_2$`FVIndex 2` ~ Depth_transect_2$Ibarranewnorm, data = Depth_transect_2)
-summary(fit.rob1)
-
-Bpsquared <- Depth_transect_2$Bpindex^2
-
-fvsquared <- Depth_transect_2$`FVIndex 2`^2
-
-petsquared <- Depth_transect_2$Petro_index_swlr^2
-
-fragsquared <- Depth_transect_2$Frag_rate^2
-
-ibarasquared <- Depth_transect_2$Ibarranewnorm^2
-
-#*****
-
-fit.rob1 <- lm(Coretop_dissolution_analysis_2$Sp_diversity ~ Coretop_dissolution_analysis_2$, data = Coretop_dissolution_analysis_2)
-summary(fit.rob1)
-
-fvsquared <- Coretop_dissolution_analysis_2$`FVIndex 2`^2
-
-Bpsquared <- Coretop_dissolution_analysis_2$Bandp_index_swlr^2
-
-petsquared <- Coretop_dissolution_analysis_2$Petro_index_swlr^2
-
-fragsquared <- Coretop_dissolution_analysis_2$`Frag_rate (%)`^2
-
-FIsquared <- Coretop_dissolution_analysis_2$`Frag Intensity 2_norm`^2
-
-
-
-ggscatter(Coretop_dissolution_analysis_2, x = "Fragvariance", y = "Foramvariance", 
-            add = "reg.line", conf.int = TRUE, size = 1,
-            cor.coef = TRUE, cor.coeff.args = list(method = "spearman", label.x.npc = "middle", label.y.npc = "top"), add.params = list(color = "black", fill = "lightgray", size = 0.5),
-            xlab= ("Variance (Fragments)"), ylab = "Variance (Forams)")
-
-ggscatter(SR_vs_season_lat_pp_sst_therm_grad, x = "Sprich", y = "Lat", 
-          add = "reg.line", conf.int = TRUE, size = 1,
-          cor.coef = TRUE, cor.coeff.args = list(method = "spearman", label.x.npc = "middle", label.y.npc = "top"), add.params = list(color = "black", fill = "lightgray", size = 0.5),
-          xlab= ("SR"), ylab = "Lat")
-
-
-fit.manu3 <- lm(Sprich ~ ThermG, data = SR_vs_season_lat_pp_sst_therm_grad)
-summary(fit.manu3)
-
-#************************************
-# JoyPlot All Corres Moz. Channel----
-#************************************
-
-MC_density <- read.csv("MCjoyplot.csv", header = TRUE, sep = ',')
-
+## load data and manually order the sites
 ForamMCjoyplot$Coreids <- factor(ForamMCjoyplot$Coreid, 
                               levels = c("MD96-2066","MD96-2067b","MD96-2064","MD96-2063",
                                          "MD96-2065", "MD96-2056", "MD96-2055", "MD96-2054", 
                                          "MD96-2053", "MD96-2051", "MD79-260", "MD79-261",
                                          "MD96-2059",  "MD96-2058","MD96-2049","MD96-2060"))
 
-FragMCjoyplot$Coreids <- factor(FragMCjoyplot$Coreid, 
-                                 levels = c("MD96-2066","MD96-2067b","MD96-2064","MD96-2063",
-                                            "MD96-2065", "MD96-2056", "MD96-2055", "MD96-2054", 
-                                            "MD96-2053", "MD96-2051", "MD79-260", "MD79-261",
-                                            "MD96-2059",  "MD96-2058","MD96-2049","MD96-2060"))
-
+## specify data object; columns for x and y axis; and type of probability distribution quantifier
 MCForam <- ggplot(ForamMCjoyplot, aes(x = Size, y = Coreids, fill = stat(quantile))) +
+  ## add density plots and show quantile lines
   stat_density_ridges(quantile_lines = TRUE,
                       calc_ecdf = TRUE,
                       geom = "density_ridges_gradient",
                       rel_min_height = 0.005,
                       quantiles = c(0.05, 0.95)) +
+  ## expand x-axis values so that it starts from zero
   scale_x_continuous(limits = c(0, 1100), expand = c(0,0)) + 
+  ## add quantile colors
   scale_fill_manual(name = "Percentile", values = c("#E2FFF2", "white", "#B0E0E6"),
+                    ## add quantile labels
                     labels = c("[0, 5%]", "[5%, 95%]", "[95%, 100%]")) +
-  theme(axis.text = element_text(size=11), axis.text.y = element_text(size = 11))  + 
-  theme(axis.title.x = element_text(size = 13, face = "bold"), axis.title.y = element_text(size = 13, face = "bold")) +
-  theme(legend.text = element_text(size = 12), legend.title = element_text(size = 13)) + 
+  ## format axis texts
+  theme(axis.text = element_text(size=11), 
+        axis.text.y = element_text(size = 11))  + 
+  ## format axis title texts
+  theme(axis.title.x = element_text(size = 13, face = "bold"), 
+        axis.title.y = element_text(size = 13, face = "bold")) +
+  ## format legend texts
+  theme(legend.text = element_text(size = 12), 
+        legend.title = element_text(size = 13)) + 
+  ## add x and y-axis labels
   labs(x = expression("Size (μm)"), y = expression("Core IDs"))
 
-#Export Figure as JPG
-
-jpeg("~/Desktop/Foram MCJoyplot 07012022.jpg",width=4000,height=3700,units="px",res=500, bg="white",pointsize = 8)
+## export figure as JPG
+jpeg("~/Desktop/Figure 3a.jpg", width = 4000, height = 3700, units = "px", res = 500, bg = "white",pointsize = 8)
 MCForam
+## close graphic object
 dev.off()
 
+##*******************************************************************
+## Figure 3b (Joy plot for Mozambique Channel::fragments) -----------
+##*******************************************************************
+
+## load data and manually order the sites 
+FragMCjoyplot$Coreids <- factor(FragMCjoyplot$Coreid, 
+                                levels = c("MD96-2066","MD96-2067b","MD96-2064","MD96-2063",
+                                           "MD96-2065", "MD96-2056", "MD96-2055", "MD96-2054", 
+                                           "MD96-2053", "MD96-2051", "MD79-260", "MD79-261",
+                                           "MD96-2059",  "MD96-2058","MD96-2049","MD96-2060"))
+
+## specify data object; columns for x and y axis; and type of probability distribution quantifier
 MCFrag <- ggplot(FragMCjoyplot, aes(x = Size, y = Coreids, fill = stat(quantile))) +
+  ## add density plots and show quantile lines
   stat_density_ridges(quantile_lines = TRUE,
                       calc_ecdf = TRUE,
                       geom = "density_ridges_gradient",
                       rel_min_height = 0.005,
                       quantiles = c(0.05, 0.95)) +
+  ## expand x-axis values so that it starts from zero
   scale_x_continuous(limits = c(0, 1000), expand = c(0,0)) + 
+  ## add quantile colors
   scale_fill_manual(name = "Percentile", values = c("#E2FFF2", "white", "#B0E0E6"),
+                    ## add quantile labels
                     labels = c("[0, 5%]", "[5%, 95%]", "[95%, 100%]")) +
-  theme(axis.text = element_text(size=11), axis.text.y = element_text(size = 11))  + 
-  theme(axis.title.x = element_text(size = 13, face = "bold"), axis.title.y = element_text(size = 13, face = "bold")) +
-  theme(legend.text = element_text(size = 12), legend.title = element_text(size = 13)) + 
-    labs(x = expression("Size (μm)"), y = expression("Core IDs"))
+  ## format axis texts
+  theme(axis.text = element_text(size=11), 
+        axis.text.y = element_text(size = 11))  + 
+  ## format axis title texts
+  theme(axis.title.x = element_text(size = 13, face = "bold"), 
+        axis.title.y = element_text(size = 13, face = "bold")) +
+  ## format legend texts
+  theme(legend.text = element_text(size = 12), 
+        legend.title = element_text(size = 13)) + 
+  ## add x and y-axis labels
+  labs(x = expression("Size (μm)"), y = expression("Core IDs"))
 
-#Export Figure as JPG
-
-jpeg("~/Desktop/Frag MCJoyplot 10022022.jpg",width=4000,height=3700,units="px",res=500, bg="white",pointsize = 8)
+## export figure as JPG
+jpeg("~/Desktop/Figure 3b.jpg",width = 4000, height = 3700, units = "px", res = 500, bg = "white",pointsize = 8)
 MCFrag
+## close graphic object
 dev.off()
+
+##*********************************
+## Statistical analysis -----------
+##*********************************
+
+## fit model for desired variables (here is an example but it generally shows how all statistical significance were determined)
+fit.stat <- lm(Sprich ~ ThermG, data = SR_vs_season_lat_pp_sst_therm_grad)
+## see stat summary
+summary(fit.stat)
+
+## view correlation (used for personal verification of regression analysis done in another software)
+ggscatter(SR_vs_season_lat_pp_sst_therm_grad, x = "Sprich", y = "ThermG", 
+          ## add regression line
+          add = "reg.line", 
+          ## add confidence interval
+          conf.int = TRUE, 
+          ## set regression line size
+          size = 1,
+          ## show correlation co-efficient
+          cor.coef = TRUE, 
+          ## set correlation analysis method (for statistics)
+          cor.coeff.args = list(method = "spearman", label.x.npc = "middle", label.y.npc = "top"), add.params = list(color = "black", fill = "lightgray", size = 0.5),
+          ## add labels
+          xlab= ("SR"), ylab = "Lat")
+
+##**********************************************************************************************************************************##
+## End of Script --------
+##**********************************************************************************************************************************##
