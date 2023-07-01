@@ -215,30 +215,6 @@ MCFrag
 ## close graphic object
 dev.off()
 
-##*********************************
-## Statistical analysis -----------
-##*********************************
-
-## fit model for desired variables (here is an example but it generally shows how all statistical significance were determined)
-fit.stat <- lm(Sprich ~ ThermG, data = SR_vs_season_lat_pp_sst_therm_grad)
-## see stat summary
-summary(fit.stat)
-
-## view correlation (used for personal verification of regression analysis done in another software)
-ggscatter(SR_vs_season_lat_pp_sst_therm_grad, x = "Sprich", y = "ThermG", 
-          ## add regression line
-          add = "reg.line", 
-          ## add confidence interval
-          conf.int = TRUE, 
-          ## set regression line size
-          size = 1,
-          ## show correlation co-efficient
-          cor.coef = TRUE, 
-          ## set correlation analysis method (for statistics)
-          cor.coeff.args = list(method = "spearman", label.x.npc = "middle", label.y.npc = "top"), add.params = list(color = "black", fill = "lightgray", size = 0.5),
-          ## add labels
-          xlab= ("SR"), ylab = "Lat")
-
 ##**********************************************************************************************************************************##
 ## End of Script --------
 ##**********************************************************************************************************************************##
