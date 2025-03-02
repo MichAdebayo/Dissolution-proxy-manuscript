@@ -101,7 +101,10 @@ pip-selfcheck.json
 Apollo
 
 # CSV files
-.csv/
+*.csv/
+
+# XLSX files
+*.xlsx/
 
 # Git attributes
 .gitattributes/
