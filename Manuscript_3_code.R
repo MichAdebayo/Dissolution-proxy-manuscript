@@ -137,8 +137,8 @@ dev.off()
 ForamMCjoyplot$Coreids <- factor(ForamMCjoyplot$Coreid, 
                               levels = c("MD96-2066","MD96-2067b","MD96-2064","MD96-2063",
                                          "MD96-2065", "MD96-2056", "MD96-2055", "MD96-2054", 
-                                         "MD96-2053", "MD96-2051", "MD79-260", "MD79-261",
-                                         "MD96-2059",  "MD96-2058","MD96-2049","MD96-2060"))
+                                         "MD96-2053", "MD96-2051", "MD79-260", "MD79-261", "MD96-2061",
+                                         "MD96-2059",  "MD96-2058","MD96-2049","MD96-2060", "MD79-257"))
 
 ## specify data object; columns for x and y axis; and type of probability distribution quantifier
 MCForam <- ggplot(ForamMCjoyplot, aes(x = Size, y = Coreids, fill = stat(quantile))) +
@@ -155,19 +155,19 @@ MCForam <- ggplot(ForamMCjoyplot, aes(x = Size, y = Coreids, fill = stat(quantil
                     ## add quantile labels
                     labels = c("[0, 5%]", "[5%, 95%]", "[95%, 100%]")) +
   ## format axis texts
-  theme(axis.text = element_text(size=11), 
-        axis.text.y = element_text(size = 11))  + 
+  theme(axis.text = element_text(size=12), 
+        axis.text.y = element_text(size = 12))  + 
   ## format axis title texts
-  theme(axis.title.x = element_text(size = 13, face = "bold"), 
-        axis.title.y = element_text(size = 13, face = "bold")) +
+  theme(axis.title.x = element_text(size = 14, face = "bold"), 
+        axis.title.y = element_text(size = 14, face = "bold")) +
   ## format legend texts
-  theme(legend.text = element_text(size = 12), 
-        legend.title = element_text(size = 13)) + 
+  theme(legend.text = element_text(size = 13), 
+        legend.title = element_text(size = 14)) + 
   ## add x and y-axis labels
-  labs(x = expression("Size (μm)"), y = expression("Core IDs"))
+  labs(x = NULL, y = expression("Core IDs"))
 
 ## export figure as JPG
-jpeg("~/Desktop/Figure 3a.jpg", width = 4000, height = 3700, units = "px", res = 500, bg = "white",pointsize = 8)
+jpeg("~/Desktop/Figure 3a.jpg", width = 4000, height = 3900, units = "px", res = 500, bg = "white",pointsize = 8)
 MCForam
 ## close graphic object
 dev.off()
@@ -180,8 +180,8 @@ dev.off()
 FragMCjoyplot$Coreids <- factor(FragMCjoyplot$Coreid, 
                                 levels = c("MD96-2066","MD96-2067b","MD96-2064","MD96-2063",
                                            "MD96-2065", "MD96-2056", "MD96-2055", "MD96-2054", 
-                                           "MD96-2053", "MD96-2051", "MD79-260", "MD79-261",
-                                           "MD96-2059",  "MD96-2058","MD96-2049","MD96-2060"))
+                                           "MD96-2053", "MD96-2051", "MD79-260", "MD79-261","MD96-2061",
+                                           "MD96-2059",  "MD96-2058","MD96-2049","MD96-2060", "MD79-257"))
 
 ## specify data object; columns for x and y axis; and type of probability distribution quantifier
 MCFrag <- ggplot(FragMCjoyplot, aes(x = Size, y = Coreids, fill = stat(quantile))) +
@@ -198,19 +198,19 @@ MCFrag <- ggplot(FragMCjoyplot, aes(x = Size, y = Coreids, fill = stat(quantile)
                     ## add quantile labels
                     labels = c("[0, 5%]", "[5%, 95%]", "[95%, 100%]")) +
   ## format axis texts
-  theme(axis.text = element_text(size=11), 
-        axis.text.y = element_text(size = 11))  + 
+  theme(axis.text = element_text(size=12), 
+        axis.text.y = element_text(size = 12))  + 
   ## format axis title texts
-  theme(axis.title.x = element_text(size = 13, face = "bold"), 
-        axis.title.y = element_text(size = 13, face = "bold")) +
+  theme(axis.title.x = element_text(size = 14, face = "bold"), 
+        axis.title.y = element_text(size = 14, face = "bold")) +
   ## format legend texts
-  theme(legend.text = element_text(size = 12), 
-        legend.title = element_text(size = 13)) + 
+  theme(legend.text = element_text(size = 13), 
+        legend.title = element_text(size = 14)) + 
   ## add x and y-axis labels
-  labs(x = expression("Size (μm)"), y = expression("Core IDs"))
+  labs(x = NULL, y = expression("Core IDs"))
 
 ## export figure as JPG
-jpeg("~/Desktop/Figure 3b.jpg",width = 4000, height = 3700, units = "px", res = 500, bg = "white",pointsize = 8)
+jpeg("~/Desktop/Figure 3b.jpg",width = 4000, height = 3900, units = "px", res = 500, bg = "white",pointsize = 8)
 MCFrag
 ## close graphic object
 dev.off()
