@@ -1,6 +1,6 @@
 # 📘 Dissolution Manuscript: 
 
-This repository contains the code used in the manuscript titled **"A comparison of new and established foraminiferal dissolution proxies in tropical Indian Ocean deep-sea sediments"**. It is published in the AGU journal : **Paleoceanography and Paleoclimatology**. The manuscript can be found in Chapter 4 of my thesis.
+This repository contains the code used in the manuscript titled **"A comparison of new and established foraminiferal dissolution proxies in tropical Indian Ocean deep-sea sediments"**. It has been accepted to be published in the AGU journal : **Paleoceanography and Paleoclimatology**. The manuscript can be found in Chapter 4 of my thesis.
 
 ---
 
