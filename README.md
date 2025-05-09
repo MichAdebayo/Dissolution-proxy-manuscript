@@ -11,9 +11,10 @@ This repository contains the code used in the manuscript titled **"A comparison 
 
 - **R Scripts**
   - `dissolution_manuscript.R`: R-based scripts for generating figures and statistical analyses.
-  
+
 - **Data Files**
-  - `dissolution_indices.csv` : can be downloaded here: https://www.seanoe.org/data/00904/101616/, - `foram_frag_morphometry.csv` : can be downloaded here: https://www.seanoe.org/data/00750/86211/, 
+  - `dissolution_indices.csv` : can be downloaded here: https://www.seanoe.org/data/00904/101616/, 
+  - `foram_frag_morphometry.csv` : can be downloaded here: https://www.seanoe.org/data/00750/86211/, 
 
 - **Other Files**
   - `README.md`: This file.
