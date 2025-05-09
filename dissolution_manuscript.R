@@ -6,7 +6,8 @@
 ##***********************************************************************************************************************************##
 
 ##***********************************************************************************************************************************##
-## Manuscript Title: Fragment Variance Index : A new proxy for estimating planktonic foraminifera dissolution in deep sea sediments  ##
+## Manuscript Title: A comparison of new and established foraminiferal dissolution proxies in tropical Indian
+## Ocean deep-sea sediments
 ##***********************************************************************************************************************************##
 
 ##**************************
@@ -16,118 +17,6 @@
 library(ggplot2)
 library(ggdist)
 library(ggpubr)
-
-##******************************************************************************
-## Figure S1a in Supporting Information 1 (Rain Cloud Plot::MD962049) -----------
-##******************************************************************************
-
-## specify data object; columns for x and y axis; and column to determine color
-## after running the whole code, store figure object with Core_ID  
-MD962049 <- ggplot(MD96_2049, aes(x = Type, y = Size, fill = Type)) +
-  ## add panel borders
-  panel_border() +
-  ## add half-violin from {ggdist} package
-  ggdist::stat_halfeye(
-    ## custom bandwidth
-    adjust = .5, 
-    ## adjust height
-    width = .6, 
-    ## move geom to the right
-    justification = -.2, 
-    ## remove slab interval
-    .width = 0, 
-    point_colour = NA
-  ) + 
-  geom_boxplot(
-    width = .12, 
-    ## remove outliers
-    outlier.color = NA,
-    alpha = 0.5) +
-  ## add dot plots from {ggdist} package
-  ggdist::stat_dots(
-    ## orientation to the left
-    side = "left", 
-    ## move geom to the left
-    justification = 1.1, 
-    ## adjust grouping (binning) of observations 
-    binwidth = .25
-  ) + 
-  ## remove white space on the left and flip axis by 90°
-  coord_flip(xlim = c(1.2, NA), clip = "off") +
-  ## customize theme
-  theme_bw() +
-  theme(axis.text = element_text(size=16), axis.text.y = element_text(size = 16)) + 
-  theme(legend.position = "none") +
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + 
-  theme(axis.title.x = element_text(size = 18), axis.title.y = element_text(size = 18)) +
-  ## add title
-  ggtitle("MD96-2049 (1669 m)")
-
-## export Figure as PNG
-png("~/Desktop/Figure S1a.png", width = 5000, height = 3000, units = "px", res = 500, bg = "white")
-## recall figure object
-MD962049 + 
-  ## add x and y axes labels
-  labs(y = "Size (μm)", 
-       x = "Type")
-## close plot save graphics
-dev.off()
-
-##*******************************************************************************
-## Figure S1b in Supporting Information 1 (Rain Cloud Plot::MD962066) -----------
-##*******************************************************************************
-
-## specify data object; columns for x and y axis; and column to determine color
-## after running the whole code, store figure object with Core_ID  
-MD962066 <- ggplot(MD96_2066, aes(x = Type, y = Size, fill = Type)) +
-  ## add panel borders
-  panel_border() +
-  ## add half-violin from {ggdist} package
-  ggdist::stat_halfeye(
-    ## custom bandwidth
-    adjust = .5, 
-    ## adjust height
-    width = .6, 
-    ## move geom to the right
-    justification = -.2, 
-    ## remove slab interval
-    .width = 0, 
-    point_colour = NA
-  ) + 
-  geom_boxplot(
-    width = .12, 
-    ## remove outliers
-    outlier.color = NA,
-    alpha = 0.5) +
-  ## add dot plots from {ggdist} package
-  ggdist::stat_dots(
-    ## orientation to the left
-    side = "left", 
-    ## move geom to the left
-    justification = 1.1, 
-    ## adjust grouping (binning) of observations 
-    binwidth = .25
-  ) + 
-  ## remove white space on the left and flip axis by 90°
-  coord_flip(xlim = c(1.2, NA), clip = "off") +
-  ## customize theme
-  theme_bw() +
-  theme(axis.text = element_text(size=14), axis.text.y = element_text(size = 14)) + 
-  theme(legend.position = "none") +
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + 
-  theme(axis.title.x = element_text(size = 15), axis.title.y = element_text(size = 15)) +
-  ## add title
-  ggtitle("MD96-2066 (3986 m)")
-
-## export figure as PNG
-png("~/Desktop/Figure S1b.png", width = 4000, height = 3000, units = "px", res = 500, bg = "white", pointsize = 8)
-## recall figure object
-MD962066 + 
-  ## add x and y axes labels
-  labs(y = "Size (μm)", 
-       x = "Type")
-## close plot save graphics
-dev.off()
 
 ##*********************************************************************************
 ## Figure 3a (Joy plot for Mozambique Channel::planktonic foraminifera) -----------
@@ -214,6 +103,121 @@ jpeg("~/Desktop/Figure 3b.jpg",width = 4000, height = 3900, units = "px", res = 
 MCFrag
 ## close graphic object
 dev.off()
+
+
+##******************************************************************************
+## Figure S1a in Supporting Information 1 (Rain Cloud Plot::MD962049) -----------
+##******************************************************************************
+
+## specify data object; columns for x and y axis; and column to determine color
+## after running the whole code, store figure object with Core_ID  
+MD962049 <- ggplot(MD96_2049, aes(x = Type, y = Size, fill = Type)) +
+  ## add panel borders
+  panel_border() +
+  ## add half-violin from {ggdist} package
+  ggdist::stat_halfeye(
+    ## custom bandwidth
+    adjust = .5, 
+    ## adjust height
+    width = .6, 
+    ## move geom to the right
+    justification = -.2, 
+    ## remove slab interval
+    .width = 0, 
+    point_colour = NA
+  ) + 
+  geom_boxplot(
+    width = .12, 
+    ## remove outliers
+    outlier.color = NA,
+    alpha = 0.5) +
+  ## add dot plots from {ggdist} package
+  ggdist::stat_dots(
+    ## orientation to the left
+    side = "left", 
+    ## move geom to the left
+    justification = 1.1, 
+    ## adjust grouping (binning) of observations 
+    binwidth = .25
+  ) + 
+  ## remove white space on the left and flip axis by 90°
+  coord_flip(xlim = c(1.2, NA), clip = "off") +
+  ## customize theme
+  theme_bw() +
+  theme(axis.text = element_text(size=16), axis.text.y = element_text(size = 16)) + 
+  theme(legend.position = "none") +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + 
+  theme(axis.title.x = element_text(size = 18), axis.title.y = element_text(size = 18)) +
+  ## add title
+  ggtitle("MD96-2049 (1669 m)")
+
+## export Figure as PNG
+png("~/Desktop/Figure S1a.png", width = 5000, height = 3000, units = "px", res = 500, bg = "white")
+## recall figure object
+MD962049 + 
+  ## add x and y axes labels
+  labs(y = "Size (μm)", 
+       x = "Type")
+## close plot save graphics
+dev.off()
+
+
+##*******************************************************************************
+## Figure S1b in Supporting Information 1 (Rain Cloud Plot::MD962066) -----------
+##*******************************************************************************
+
+## specify data object; columns for x and y axis; and column to determine color
+## after running the whole code, store figure object with Core_ID  
+MD962066 <- ggplot(MD96_2066, aes(x = Type, y = Size, fill = Type)) +
+  ## add panel borders
+  panel_border() +
+  ## add half-violin from {ggdist} package
+  ggdist::stat_halfeye(
+    ## custom bandwidth
+    adjust = .5, 
+    ## adjust height
+    width = .6, 
+    ## move geom to the right
+    justification = -.2, 
+    ## remove slab interval
+    .width = 0, 
+    point_colour = NA
+  ) + 
+  geom_boxplot(
+    width = .12, 
+    ## remove outliers
+    outlier.color = NA,
+    alpha = 0.5) +
+  ## add dot plots from {ggdist} package
+  ggdist::stat_dots(
+    ## orientation to the left
+    side = "left", 
+    ## move geom to the left
+    justification = 1.1, 
+    ## adjust grouping (binning) of observations 
+    binwidth = .25
+  ) + 
+  ## remove white space on the left and flip axis by 90°
+  coord_flip(xlim = c(1.2, NA), clip = "off") +
+  ## customize theme
+  theme_bw() +
+  theme(axis.text = element_text(size=14), axis.text.y = element_text(size = 14)) + 
+  theme(legend.position = "none") +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + 
+  theme(axis.title.x = element_text(size = 15), axis.title.y = element_text(size = 15)) +
+  ## add title
+  ggtitle("MD96-2066 (3986 m)")
+
+## export figure as PNG
+png("~/Desktop/Figure S1b.png", width = 4000, height = 3000, units = "px", res = 500, bg = "white", pointsize = 8)
+## recall figure object
+MD962066 + 
+  ## add x and y axes labels
+  labs(y = "Size (μm)", 
+       x = "Type")
+## close plot save graphics
+dev.off()
+
 
 ##**********************************************************************************************************************************##
 ## End of Script --------
